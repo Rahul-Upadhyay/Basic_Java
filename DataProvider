@@ -1,4 +1,4 @@
-package odoo;
+package package_name;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -107,5 +107,31 @@ public class ReadFile {
 }
 
 
+################################################################################
+Accessing it in code
+
+			String filelocation= "Path to file";
+			String sheet_name = "Sheet1";
 
 
+				@DataProvider
+				public Object[][] Data() throws IOException
+				{
+				
+				return ReadFile.getTestData(filelocation, sheet_name);
+				
+
+				}
+
+#################################################################################
+Using the data obtained through data provide in code
+
+			@Test(dataProvider = "Data")
+			public void LoginDetails(String User_Name, String Password) throws InterruptedException// mention the fields of excel sheet as the parameters int he method
+			{
+				driver.get("URL");
+				driver.findElement(username).sendKeys(User_Name);
+				driver.findElement(password).sendKeys(Password);
+				driver.findElement(loginButton).click();
+			
+			}
